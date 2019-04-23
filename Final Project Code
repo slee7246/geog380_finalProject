@@ -4,14 +4,17 @@ from arcpy import env
 #Set workspace
 env.worksace = "E:/GEOG 380/Projects/Group Project"
 
+#main data files
 crime = "E:/GEOG 380/Projects/Group Project/Crimes2019_Chicago.csv"
 policeStations = "E:/GEOG 380/Projects/Group Project/PoliceStationsDec2012.shp"
 city = "E:/GEOG 380/Projects/Group Project/CityBoundary" 
+
+#create the output directory for the selected variables
 theft = "E:/GEOG 380/Projects/Group Project/theft_select" 
 domestic = "E:/GEOG 380/Projects/Group Project/domestic_select"
 narcotics = "E:/GEOG 380/Projects/Group Project/narcotics_select"
 
-#Select analysis
+#Three Select analysis
 arcpy.Select_analysis(crime, theft, '"PRIMARY_TYPE" = 'THEFT'")
 arcpy.Select_analysis(crime, domestic, '"PRIMARY_TYPE" = 'DOMESTIC'")
 arcpy.Select_analysis(crime, narcotics, '"PRIMARY_TYPE" = 'NARCOTICS'")
