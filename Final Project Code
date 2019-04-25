@@ -17,7 +17,7 @@ narcotics = "E:/GEOG 380/Projects/Group Project/narcotics_select"
 #making a feature layer
 arcpy.MakeFeatureLayer_management("PoliceStationsDec2012.shp", "PoliceStationLayer")
 arcpy.MakeFeautreLayer_management("Crimes2019_Chicago.csv", "CrimesLayer")
-arcpy.MakeFeatureLayer_management("CityBoundary", "CityBoundaryLayer")
+arcpy.MakeFeatureLayer_management("geo_export_8eb177f2-432d-4432-905b-d2d32b022901", "CityBoundaryLayer")
 
 #Three Select analysis
 arcpy.Select_analysis(crime, theft, '"PRIMARY_TYPE" = 'THEFT'")
