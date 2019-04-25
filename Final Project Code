@@ -7,7 +7,7 @@ env.worksace = "E:/GEOG 380/Projects/Group Project"
 #main data files
 crime = "E:/GEOG 380/Projects/Group Project/Crimes2019_Chicago.csv"
 policeStations = "E:/GEOG 380/Projects/Group Project/PoliceStationsDec2012.shp"
-city = "E:/GEOG 380/Projects/Group Project/CityBoundary" 
+city = "E:/GEOG 380/Projects/Group Project/geo_export_8eb177f2-432d-4432-905b-d2d32b022901" 
 
 #create the output directory for the selected variables
 theft = "E:/GEOG 380/Projects/Group Project/theft_select" 
