@@ -14,6 +14,8 @@ theft = "E:/GEOG 380/Projects/Group Project/theft_select"
 domestic = "E:/GEOG 380/Projects/Group Project/domestic_select"
 narcotics = "E:/GEOG 380/Projects/Group Project/narcotics_select"
 
+#Joining Boundary layer with the Crime Data
+
 #making a feature layer
 arcpy.MakeFeatureLayer_management("PoliceStationsDec2012.shp", "PoliceStationLayer")
 arcpy.MakeFeautreLayer_management("Crimes2019_Chicago.csv", "CrimesLayer")
