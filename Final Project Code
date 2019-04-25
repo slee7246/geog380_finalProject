@@ -14,7 +14,17 @@ theft = "E:/GEOG 380/Projects/Group Project/theft_select"
 domestic = "E:/GEOG 380/Projects/Group Project/domestic_select"
 narcotics = "E:/GEOG 380/Projects/Group Project/narcotics_select"
 
+#making a feature layer
+arcpy.MakeFeatureLayer_management("PoliceStationsDec2012.shp", "PoliceStationLayer")
+arcpy.MakeFeautreLayer_management("Crimes2019_Chicago.csv", "CrimesLayer")
+arcpy.MakeFeatureLayer_management("CityBoundary", "CityBoundaryLayer")
+
 #Three Select analysis
 arcpy.Select_analysis(crime, theft, '"PRIMARY_TYPE" = 'THEFT'")
 arcpy.Select_analysis(crime, domestic, '"PRIMARY_TYPE" = 'DOMESTIC'")
 arcpy.Select_analysis(crime, narcotics, '"PRIMARY_TYPE" = 'NARCOTICS'")
+
+#Maybe Do the GetCount?
+print arcpy.GetCount_management("theft")
+print arcpy.GetCount_management("domestic")
+print arcpy.GetCount_management("narcotics")
