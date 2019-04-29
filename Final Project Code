@@ -3,7 +3,7 @@
 #Pre: You need to change the attribute field of area_number to LONG INTEGER. 
 #Add field, name is area_number_1, select LONG INTEGER as type. After, click calculate field and add [area_number] and click ok. 
 #Join field with the chicago area shapefile NOT the police station shapefile
-
+#CrimePoints is a vector file of actual coordinate points extracted from Crime2019_Chicago.csv file
 
 import arcpy
 from arcpy import env
@@ -11,9 +11,8 @@ from arcpy import env
 #Set workspace
 env.workspace = "E:/GEOG 380/Projects/Group Project"
 
-
 #main data files
-crime = "E:/GEOG 380/Projects/Group Project/Crimes2019_Chicago.csv"
+crime = "E:/GEOG 380/Projects/Group Project/CrimePoints"
 policeStations = "E:/GEOG 380/Projects/Group Project/PoliceStationsDec2012.shp"
 city = "E:/GEOG 380/Projects/Group Project/geo_export_8eb177f2-432d-4432-905b-d2d32b022901" 
 
@@ -36,3 +35,6 @@ arcpy.Select_analysis(crime, narcotics, '"PRIMARY_TYPE" = 'NARCOTICS'")
 print arcpy.GetCount_management("theft")
 print arcpy.GetCount_management("domestic")
 print arcpy.GetCount_management("narcotics")
+
+#Get the highest Count
+
