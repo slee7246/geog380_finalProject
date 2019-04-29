@@ -1,3 +1,8 @@
+#GEOG 380
+#Pre: You need to change the attribute field of area_number to LONG INTEGER. 
+#Add field, name is area_number_1, select LONG INTEGER as type. After, click calculate field and add [area_number] and click ok. 
+
+
 import arcpy
 from arcpy import env
 
@@ -14,22 +19,6 @@ city = "E:/GEOG 380/Projects/Group Project/geo_export_8eb177f2-432d-4432-905b-d2
 theft = "E:/GEOG 380/Projects/Group Project/theft_select" 
 domestic = "E:/GEOG 380/Projects/Group Project/domestic_select"
 narcotics = "E:/GEOG 380/Projects/Group Project/narcotics_select"
-
-#Changing the field because the joining fields are string:long not long:lonng
-fc = "E:/GEOG 380/Projects/Group Project/geo_export_8eb177f2-432d-4432-905b-d2d32b022901"
-field = "area_num_1" #short int, non nullable field
-new_name = "area_number"
-new_alias = "areaNumber"
-new_type = "Long"
-new_length = "60"
-new_is_nullable = "NULLABLE"
-clear_alias = "FALSE"
-
-#Alter the properties of a non nullable, short data type field to become a text field
-arcpy.AlterField_management(fc, field, new_name, new_alias, new_type, new_length, new_is_nullable, clear_alias)
-
-#Joining Boundary layer with the Crime Data
-
 
 #making a feature layer
 arcpy.MakeFeatureLayer_management("PoliceStationsDec2012.shp", "PoliceStationLayer")
