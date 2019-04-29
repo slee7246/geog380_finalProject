@@ -1,6 +1,8 @@
 #GEOG 380
+
 #Pre: You need to change the attribute field of area_number to LONG INTEGER. 
 #Add field, name is area_number_1, select LONG INTEGER as type. After, click calculate field and add [area_number] and click ok. 
+#Join field with the chicago area shapefile NOT the police station shapefile
 
 
 import arcpy
