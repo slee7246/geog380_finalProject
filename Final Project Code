@@ -36,5 +36,5 @@ print arcpy.GetCount_management("theft")
 print arcpy.GetCount_management("domestic")
 print arcpy.GetCount_management("narcotics")
 
-#Get the highest Count
+#Get the highest Count, after finding out what the highest count is, select 5 mile buffer to see if there are any police stations nearby
 
