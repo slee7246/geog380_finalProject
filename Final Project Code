@@ -11,8 +11,11 @@ from arcpy import env
 #Set workspace
 env.workspace = "E:/GEOG 380/Projects/Group Project"
 
+#Making a copy feature with OID after adding XY data from the Crime2019_Chicago.csv file
+arcpy.CopyFeatures_management("CrimePoints", "E:/GEOG 380/Projects/Group Project/CopiedFeatureCrimePoints")
+
 #main data files
-crime = "E:/GEOG 380/Projects/Group Project/CrimePoints"
+crime = "E:/GEOG 380/Projects/Group Project/CopiedFeatureCrimePoints"
 policeStations = "E:/GEOG 380/Projects/Group Project/PoliceStationsDec2012.shp"
 city = "E:/GEOG 380/Projects/Group Project/geo_export_8eb177f2-432d-4432-905b-d2d32b022901" 
 
@@ -23,18 +26,21 @@ narcotics = "E:/GEOG 380/Projects/Group Project/narcotics_select"
 
 #making a feature layer
 arcpy.MakeFeatureLayer_management("PoliceStationsDec2012.shp", "PoliceStationLayer")
-arcpy.MakeFeautreLayer_management("Crimes2019_Chicago.csv", "CrimesLayer")
 arcpy.MakeFeatureLayer_management("geo_export_8eb177f2-432d-4432-905b-d2d32b022901", "CityBoundaryLayer")
 
 #Three Select analysis
-arcpy.Select_analysis(crime, theft, '"PRIMARY_TYPE" = 'THEFT'")
-arcpy.Select_analysis(crime, domestic, '"PRIMARY_TYPE" = 'DOMESTIC'")
-arcpy.Select_analysis(crime, narcotics, '"PRIMARY_TYPE" = 'NARCOTICS'")
+theftSelect = arcpy.Select_analysis(crime, theft, '"PRIMARY_TYPE" = 'THEFT'")
+domestricSelect = arcpy.Select_analysis(crime, domestic, '"PRIMARY_TYPE" = 'DOMESTIC'")
+narcoticsSelect = arcpy.Select_analysis(crime, narcotics, '"PRIMARY_TYPE" = 'NARCOTICS'")
 
-#Maybe Do the GetCount?
+#GetCount to view selected 'Primary Type' crime by user
 print arcpy.GetCount_management("theft")
 print arcpy.GetCount_management("domestic")
 print arcpy.GetCount_management("narcotics")
 
-#Get the highest Count, after finding out what the highest count is, select 5 mile buffer to see if there are any police stations nearby
+#Buffer Police Stations
+policeBuffer = "E:/GEOG 380/Projects/Group Project/policeBuffer"
+arcpy.Buffer_analysis(policeStations, policeBuffer, "1 MILE", "FULL", "ROUND", "LIST", "Distance")
+
+
 
