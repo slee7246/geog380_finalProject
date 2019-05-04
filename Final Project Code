@@ -1,4 +1,5 @@
 #GEOG 380
+#Sarah Lee
 
 #Pre: You need to change the attribute field of area_number to LONG INTEGER. 
 #Add field, name is area_number_1, select LONG INTEGER as type. After, click calculate field and add [area_number] and click ok. 
@@ -6,23 +7,24 @@
 #CrimePoints is a vector file of actual coordinate points extracted from Crime2019_Chicago.csv file
 
 import arcpy
+import os
 from arcpy import env
 
 #Set workspace
-env.workspace = "E:/GEOG 380/Projects/Group Project"
+env.workspace = "D:/380_project"
 
-#Making a copy feature with OID after adding XY data from the Crime2019_Chicago.csv file
-arcpy.CopyFeatures_management("CrimePoints", "E:/GEOG 380/Projects/Group Project/CopiedFeatureCrimePoints")
+#Making a copy feature with OID after adding XY data from the Crime2019_Chicago.csv file(was named CrimePoints)
+arcpy.CopyFeatures_management("CrimePoints", "D:/380_project/CopiedFeatureCrimePoints")
 
 #main data files
-crime = "E:/GEOG 380/Projects/Group Project/CopiedFeatureCrimePoints"
-policeStations = "E:/GEOG 380/Projects/Group Project/PoliceStationsDec2012.shp"
-city = "E:/GEOG 380/Projects/Group Project/geo_export_8eb177f2-432d-4432-905b-d2d32b022901" 
+crime = "D:/380_project/CopiedFeatureCrimePoints"
+policeStations = "D:/380_project/PoliceStationsDec2012.shp"
+city = "D:/380_project/chi_shape/geo_export_8eb177f2-432d-4432-905b-d2d32b022901" 
 
 #create the output directory for the selected variables
-theft = "E:/GEOG 380/Projects/Group Project/theft_select" 
-domestic = "E:/GEOG 380/Projects/Group Project/domestic_select"
-narcotics = "E:/GEOG 380/Projects/Group Project/narcotics_select"
+theft = "D:/380_project/theft_select" 
+domestic = "D:/380_project/domestic_select"
+narcotics = "D:/380_project/narcotics_select"
 
 #making a feature layer
 arcpy.MakeFeatureLayer_management("PoliceStationsDec2012.shp", "PoliceStationLayer")
@@ -39,7 +41,7 @@ print arcpy.GetCount_management("domestic")
 print arcpy.GetCount_management("narcotics")
 
 #Buffer Police Stations
-policeBuffer = "E:/GEOG 380/Projects/Group Project/policeBuffer"
+policeBuffer = "D:/380_project/policeBuffer"
 arcpy.Buffer_analysis(policeStations, policeBuffer, "1 MILE", "FULL", "ROUND", "LIST", "Distance")
 
 #Clip Analysis the crimes around the policeBuffer
@@ -47,16 +49,16 @@ arcpy.Buffer_analysis(policeStations, policeBuffer, "1 MILE", "FULL", "ROUND", "
 # Set local variables
 in_features = "policeBuffer.shp"
 clip_features = "CrimeCountCopyFeatures.shp"
-out_feature_class = "E:/GEOG 380/Projects/Group Project/ClipCrime"
+out_feature_class = "D:/380_project/ClipCrime"
 xy_tolerance = ""
 
 # Execute Clip
 arcpy.Clip_analysis(in_features, clip_features, out_feature_class, xy_tolerance)
 
 #Spaital Join Analysis
-target_features = "E:/GEOG 380/Projects/Group Project/PoliceBuffer"
-join_features = "E:/GEOG 380/Projects/Group Project/ClipCrime"
-out_feature_class = "E:/GEOG 380/Projects/Group Project/FinalPoliceCount"
+target_features = "D:/380_project/PoliceBuffer"
+join_features = "D:/380_project/ClipCrime"
+out_feature_class = "D:/380_project/FinalPoliceCount"
 join_operation = JOIN_ONE_TO_ONE
 join_type = KEEP_COMMON
 match_option = COMPLETLY_CONTAINS
