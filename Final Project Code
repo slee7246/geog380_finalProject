@@ -42,5 +42,36 @@ print arcpy.GetCount_management("narcotics")
 policeBuffer = "E:/GEOG 380/Projects/Group Project/policeBuffer"
 arcpy.Buffer_analysis(policeStations, policeBuffer, "1 MILE", "FULL", "ROUND", "LIST", "Distance")
 
+#Clip Analysis the crimes around the policeBuffer
 
+# Set local variables
+in_features = "policeBuffer.shp"
+clip_features = "CrimeCountCopyFeatures.shp"
+out_feature_class = "E:/GEOG 380/Projects/Group Project/ClipCrime"
+xy_tolerance = ""
 
+# Execute Clip
+arcpy.Clip_analysis(in_features, clip_features, out_feature_class, xy_tolerance)
+
+#Spaital Join Analysis
+target_features = "E:/GEOG 380/Projects/Group Project/PoliceBuffer"
+join_features = "E:/GEOG 380/Projects/Group Project/ClipCrime"
+out_feature_class = "E:/GEOG 380/Projects/Group Project/FinalPoliceCount"
+join_operation = JOIN_ONE_TO_ONE
+join_type = KEEP_COMMON
+match_option = COMPLETLY_CONTAINS
+
+SpatialJoin_analysis (target_features, join_features, out_feature_class,
+join_operation, join_type, field_mapping, 
+match_options, search_radius, distance_field_name)
+
+#After, add field to the attribut, name it COUNT and select Long Integer.
+#Open up the field calculator for COUNT and on the box where it says Count =, just add the number 1,
+#select OK
+
+#Right-click PoliceBUffer and click Joins and Relates > Joins
+#Click the drop-down list and select Join data from another layer based on spatial location.
+#Check the Sum Box
+#Specify an output location and click OKA polygon shapefile with the 'Count' field 
+#indicating how many point features lie within each polygon feature is now present. 
+#This is usually named 'Sum_Count' or 'Count_'.
