@@ -14,6 +14,7 @@ from arcpy import env
 env.workspace = "D:/380_project"
 
 #Making a copy feature with OID after adding XY data from the Crime2019_Chicago.csv file(was named CrimePoints)
+CrimePoints = "D:/380_project/chi_shape"
 arcpy.CopyFeatures_management("CrimePoints", "D:/380_project/CopiedFeatureCrimePoints")
 
 #main data files
